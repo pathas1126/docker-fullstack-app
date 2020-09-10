@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 app.get("/api/values", (req, res) => {
   db.pool.query("SELECT * FROM LISTS;", (err, results, fields) => {
     if (err) return res.status(500).send(err);
-    return res.json(results);
+    else return res.json(results);
   });
 });
 
@@ -38,7 +38,7 @@ app.post("/api/value", (req, res, next) => {
     `INSERT INTO LISTS (value) VALUES(${req.body.value})`,
     (err, results, fields) => {
       if (err) res.status(500).send(err);
-      return res.json({ success: true, value: req.body.value });
+      else return res.json({ success: true, value: req.body.value });
     }
   );
 });
