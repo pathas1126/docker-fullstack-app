@@ -5,16 +5,16 @@ const bodyParser = require("body-parser");
 const db = require("./db");
 
 // 데이터 베이스 테이블 생성
-db.pool.query(
-  `CREATE LISTS(
-    id INTEGER AUTO_INCREMENT,
-    value TEXT,
-    PRIMARY KEY (id)
-    )`,
-  (err, results, fields) => {
-    console.log("results", results);
-  }
-);
+// db.pool.query(
+//   `CREATE LISTS(
+//     id INTEGER AUTO_INCREMENT,
+//     value TEXT,
+//     PRIMARY KEY (id)
+//     )`,
+//   (err, results, fields) => {
+//     console.log("results", results);
+//   }
+// );
 
 // 익스프레스 서버 생성
 const app = express();
