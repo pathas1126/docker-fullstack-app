@@ -23,8 +23,11 @@ function App() {
     e.preventDefault();
     axios.post("/api/value", { value }).then((response) => {
       if (response.data.success) {
-        console.log(`response: ${response}`);
-        setLists((prevLists) => [...prevLists, response.data.value]);
+        console.log(`response:`, response.data.value);
+        setLists((prevLists) => [
+          ...prevLists,
+          { id: prevLists.length + 1, value: response.data.value },
+        ]);
         setValue("");
       } else alert("데이터 입력 요청을 실패했습니다");
     });
@@ -36,7 +39,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <div className="container">
           {lists.length > 0 &&
-            lists.map((value) => <li key={value}>{value}</li>)}
+            lists.map((list) => <li key={list.id}>{list.value}</li>)}
           <form className="example" onSubmit={submitHandler}>
             <input
               type="text"

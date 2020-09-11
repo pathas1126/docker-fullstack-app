@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 // DB lists 테이블에 있는 모든 데이터를 응답으로 전송
 app.get("/api/values", (req, res) => {
-  db.pool.query("SELECT * FROM LISTS;", (err, results, fields) => {
+  db.pool.query("SELECT * FROM lists;", (err, results, fields) => {
     if (err) return res.status(500).send(err);
     else return res.json(results);
   });
@@ -35,7 +35,7 @@ app.get("/api/values", (req, res) => {
 app.post("/api/value", (req, res, next) => {
   // 바디 파서를 사용하기 때문에 요청에서 바로 body를 사용할 수 있음
   db.pool.query(
-    `INSERT INTO LISTS (value) VALUES(${req.body.value})`,
+    `INSERT INTO lists(value) VALUES("${req.body.value}")`, // 값을 ""로 감싸주어야 정상적으로 실행됨
     (err, results, fields) => {
       if (err) res.status(500).send(err);
       else return res.json({ success: true, value: req.body.value });
