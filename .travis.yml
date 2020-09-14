@@ -21,3 +21,13 @@ after_success:
   - docker push pathas1126/docker-frontend
   - docker push pathas1126/docker-backend
   - docker push pathas1126/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-northeast-2
+  app: docker-fullstack-app
+  env: DockerFullstackApp-env
+  bucket_name: elasticbeanstalk-ap-northeast-2-281318957201
+  bucket_path: elasticbeanstalk-ap-northeast-2-281318957201
+  on:
+    branch: master

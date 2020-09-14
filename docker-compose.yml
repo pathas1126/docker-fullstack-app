@@ -27,7 +27,12 @@ services:
     volumes:
       - /app/node_modules
       - ./backend:/app
-
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: 11111111
+      MYSQL_DATABASE: myapp
+      MYSQL_PORT: 3306
 # AWS RDS로 이전
 # mysql:
 #   build: ./mysql
