@@ -4,18 +4,16 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./frontend
-    container_name: app_frontend
     volumes:
       - /app/node_modules
       - ./frontend:/app
-    stdin_open: true # 리액트 버그 방지 설정
+    stdin_open: true
 
   nginx:
     restart: always
     build:
       dockerfile: Dockerfile
       context: ./nginx
-    container_name: app_nginx
     ports:
       - "3000:80"
 
@@ -30,7 +28,7 @@ services:
     environment:
       MYSQL_HOST: mysql
       MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: 11111111
+      MYSQL_ROOT_PASSWORD: johnahn777
       MYSQL_DATABASE: myapp
       MYSQL_PORT: 3306
 # AWS RDS로 이전

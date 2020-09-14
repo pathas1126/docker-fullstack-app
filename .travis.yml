@@ -6,29 +6,29 @@ services:
   - docker
 
 before_install:
-  - docker build -t pathas1126/react-test-app -f ./frontend/Dockerfile.dev ./frontend
+  - docker build -t smileajw1004/react-test-app -f ./frontend/Dockerfile.dev ./frontend
 
 script:
-  - docker run -e CI=true pathas1126/react-test-app yarn test
+  - docker run -e CI=true smileajw1004/react-test-app npm test
 
 after_success:
-  - docker build -t pathas1126/docker-frontend ./frontend
-  - docker build -t pathas1126/docker-backend ./backend
-  - docker build -t pathas1126/docker-nginx ./nginx
+  - docker build -t smileajw1004/docker-frontend ./frontend
+  - docker build -t smileajw1004/docker-backend ./backend
+  - docker build -t smileajw1004/docker-nginx ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push pathas1126/docker-frontend
-  - docker push pathas1126/docker-backend
-  - docker push pathas1126/docker-nginx
+  - docker push smileajw1004/docker-frontend
+  - docker push smileajw1004/docker-backend
+  - docker push smileajw1004/docker-nginx
 
 deploy:
   provider: elasticbeanstalk
-  region: ap-northeast-2
-  app: docker-fullstack-app
-  env: DockerFullstackApp-env
-  bucket_name: elasticbeanstalk-ap-northeast-2-281318957201
-  bucket_path: docker-fullstack-app
+  region: "ap-northeast-2"
+  app: "docker-fullstack-app"
+  env: "DockerFullstackApp-env"
+  bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
+  bucket_path: "docker-fullstack-app"
   on:
     branch: master
 
